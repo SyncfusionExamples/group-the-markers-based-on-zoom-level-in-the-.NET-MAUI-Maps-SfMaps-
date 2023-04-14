@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:map="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
+             xmlns:local="clr-namespace:MarkersOnZoomLevel"
+             x:Class="MarkersOnZoomLevel.MainPage">
+
+    <ContentPage.Behaviors>
+        <local:MapsBehavior />
+    </ContentPage.Behaviors>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="markerTemplate">
+                <StackLayout HorizontalOptions="StartAndExpand"
+                             VerticalOptions="Center">
+                    <Image Source="pin.png"
+                           HeightRequest="30"
+                           WidthRequest="30" />
+                </StackLayout>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <map:SfMaps>
+            <map:SfMaps.Layer>
+                <map:MapTileLayer x:Name="layer"
+                                  UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                  MarkerTemplate="{StaticResource markerTemplate}">
+                    <map:MapTileLayer.ZoomPanBehavior>
+                        <map:MapZoomPanBehavior EnableZooming="True" />
+                    </map:MapTileLayer.ZoomPanBehavior>
+                    <map:MapTileLayer.Markers>
+                        <map:MapMarkerCollection x:Name="markers">
+                            <map:MapMarker Latitude="20.766387"
+                                           Longitude="78.750000" />
+                        </map:MapMarkerCollection>
+                    </map:MapTileLayer.Markers>
+                </map:MapTileLayer>
+            </map:SfMaps.Layer>
+        </map:SfMaps>
+    </ContentPage.Content>
+
+</ContentPage>
